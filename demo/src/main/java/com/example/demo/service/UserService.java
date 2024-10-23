@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
-import org.mindrot.jbcrypt.BCrypt;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 @Service
 public class UserService {
@@ -13,6 +15,7 @@ public class UserService {
     UserRepository userRepo;
 
     public void registerUser(User user) {
+
         user.setName(user.getName());
         user.setSurname(user.getSurname());
         user.setEmail(user.getEmail());
@@ -34,18 +37,20 @@ public class UserService {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    public String checkLogin(User user, Long id) {
-        // Recupera l'utente dal database usando l'ID
-        User storedUser = userRepo.findById(1L).orElse(null);
-
-        // Controlla se l'utente esiste
+    public String checkLogin(User user) {
+        // Ricerca utente tramite lo username
+        User storedUser = userRepo.findByUsername(user.getUsername());
         if (storedUser != null) {
-            // Confronta la password fornita con quella memorizzata
+            System.out.println("Utente trovato: " + storedUser);
+            // Controllo password
             if (BCrypt.checkpw(user.getPassword(), storedUser.getPassword())) {
                 return "homeForUser"; // Login riuscito
+            }else{
+                System.out.println("Password non corretta: " + user.getPassword());
             }
+        } else {
+            System.out.println("Nessun utente trovato con username: " + user.getUsername());
         }
-        return "Errore"; // Login fallito
+        return "error"; // Login fallito
     }
-
 }
