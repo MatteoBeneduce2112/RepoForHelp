@@ -1,18 +1,31 @@
 package com.example.demo.service;
 
+import com.example.demo.model.DenunciaEdile;
+import org.springframework.ui.Model;
+import com.example.demo.model.DenunciaPolizia;
 import com.example.demo.model.User;
+import com.example.demo.repository.DenunciaPoliziaRepository;
+import com.example.demo.repository.DenunciaEdileRepository;
 import com.example.demo.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 public class UserService {
 
     @Autowired
     UserRepository userRepo;
+
+    @Autowired
+    DenunciaPoliziaRepository denPoRepo;
+
+    @Autowired
+    DenunciaEdileRepository denEdRepo;
 
     public void registerUser(User user) {
 
@@ -37,20 +50,44 @@ public class UserService {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    public String checkLogin(User user) {
+    public String checkLogin(User user, HttpSession session , Model model) {
         // Ricerca utente tramite lo username
         User storedUser = userRepo.findByUsername(user.getUsername());
         if (storedUser != null) {
             System.out.println("Utente trovato: " + storedUser);
             // Controllo password
             if (BCrypt.checkpw(user.getPassword(), storedUser.getPassword())) {
-                return "homeForUser"; // Login riuscito
+                session.setAttribute("user", user);
+                // Timeout della sessione a 30 minuti
+                session.setMaxInactiveInterval(30 * 60);
+                return "/homeForUser"; // Login riuscito
             }else{
                 System.out.println("Password non corretta: " + user.getPassword());
             }
         } else {
             System.out.println("Nessun utente trovato con username: " + user.getUsername());
         }
-        return "error"; // Login fallito
+        return "/login2"; // Login fallito
+    }
+
+    public void saveDenunciaPolizia(String positionPolizia, String descriptionPolizia, MultipartFile file) throws IOException {
+        DenunciaPolizia denuncia = new DenunciaPolizia();
+        denuncia.setPositionPolizia(positionPolizia);
+        denuncia.setDescriptionPolizia(descriptionPolizia);
+        denuncia.setImmaginePolizia(file.getBytes());
+
+        // Salva la denuncia nel database
+        denPoRepo.save(denuncia);
+    }
+
+    public void saveDenunciaEdilizia(String positionEdile, String descriptionEdile, MultipartFile file) throws IOException {
+        DenunciaEdile denuncia = new DenunciaEdile();
+        denuncia.setPositionEdile(positionEdile);
+        denuncia.setDescriptionEdile(descriptionEdile);
+        denuncia.setImmagineEdile(file.getBytes());
+
+        // Salva la denuncia nel database
+        denEdRepo.save(denuncia);
+
     }
 }

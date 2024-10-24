@@ -3,19 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="icon" href="Logo-Help.png" width="50" height="50"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Help</title>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+        }
+
+        .navbar{
+            background-color: #99CAD9;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 18px;
+            color: #333;
+        }
+        .navbar-nav .nav-link span {
+            font-size: 18px;
+
+        }
+        .navbar-nav .nav-link:hover {
+            color: #1c87c9;
+
+        }
+        .first__section {
+            background-color: #99CAD9;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .help__center {
+            font-family: "Alex Brush", cursive;
+            font-size: 50px;
+            color: #fff;
+        }
+        .help__description {
+            text-align: center;
+            color: #333;
+            font-size: 1.2rem;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .help__description span {
+            color: blue;
+            font-weight: bold;
+        }
+        .section {
+            padding: 50px 0;
+            text-align: center;
+            margin: 50px 0;
+            border-radius: 10px;
+            color: white;
+        }
+        .second__section {
+            background-color: #DDD8D5;
+        }
+        .third__section {
+            background-color: #2E86C1;
+        }
+        .fourth__section {
+            background-color: #8E44AD;
+        }
+        .footer {
+            background-color: #34495E;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+        .span_Home{
+            align-items: center;
+            display: inline-block;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="file"] {display: none }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+        .button {
+        background: #5E5DF0;
+        border-radius: 999px;
+        box-shadow: #5E5DF0 0 10px 20px -10px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+        opacity: 1;
+        outline: 0 solid transparent;
+        padding: 8px 18px;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        width: fit-content;
+        word-break: break-word;
+        border: 0;
+        }
+
+        a{
+           text-decoration: none;
+           color: white;
+           box-shadow: #333;
+           margin-left: 10px;
+           padding-top: 2px;
+        }
+
+    </style>
 </head>
 <body>
-<h1> Ciao! </h1>
 
+<nav class="navbar bg-body-nones">
+    <div class="container-fluid d-flex align-items-center">
+        <a class="navbar-brand d-flex align-items-center">
+            <a href="home_help.html"><img src="c:\Users\ws3em\Desktop\Logo-Help.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top"></a>
+            <span class="navbar-nav nav-link ms-2" onclick="scrollToTop()">Home</span>
+        </a>
+        <a href="#contacts" class="navbar-nav nav-link ms-2">
+            <span class="navbar-nav nav-link">Contatti</span>
+        </a>
+        <span class="help__center" id="typing-text"></span>
+        <a href="logout" class="navbar-nav nav-link ms-auto">Logout</a>
+    </div>
+</nav>
 
+<section class="first__section">
+    <div class="container d-flex flex-column align-items-center">
+        <p class="help__description"><span>Help</span> è una piattaforma di denuncia sociale.<br> Questa permette all’utente di poter far sentire la sua voce<br> in maniera diversa e soprattutto di avere un ruolo molto più attivo rispetto ad una classica denuncia.</p>
+    </div>
+</section>
+<section class="second__section section headline">
+    <div class="container2">
+        <h2 class="whatIsHelp__class">COS'È HELP?</h2>
+        <p>Help permette di poter segnalare luoghi (ad esempio piazze di spaccio) e/o persone.<br> Cosi da poter ripulire e togliere del marcio da quartieri o zone più nascoste<br> agli occhi della pubblica amministrazione.</p>
+    </div>
+</section>
+<section class="third__section section tagline">
+    <div class="container3">
+        <h2>PERCHÈ UTILIZZARE HELP?</h2>
+        <p>Come detto in precedenza, Help ha lo scopo di migliorare l’ambiente in cui viviamo. <br>Questo progetto parte da me, Matteo, che vivendo in un piccolo quartiere degradato cerca in ogni modo di poter apportare<br> modifiche e di aiutare il mio quartiere.<br> Credo in questo progetto e soprattutto credo negli utenti.</p>
+    </div>
+</section>
+<section class="fourth__section section punchline">
+    <div class="container4">
+        <h2>COME UTILIZZARE HELP?</h2>
+        <p>Attraverso l’inserimento dell’immagine, di una descrizione e della posizione del immagine<br> è possibile incominciare ad utilizzare Help in totale semplicità.</p>
+        <a href="/insertImagePolice"><button class="button" type="submit">Inserisci la tua immagine per la Polizia!</button></a>
+        <a href="/insertImageEdil"><button class="button" type="submit">Inserisci la tua immagine per l'Edilizia!</button></a>
+    </div>
+</section>
+
+<footer class="footer" id="contacts">
+    <p>&copy; 2024 Help Platform. Tutti i diritti riservati.</p> Puoi contattarci via email a: helproject@gmail.com
+</footer>
 <script>
 
     setTimeout(function() {
-    alert("La tua sessione è scaduta. Verrai reindirizzato al login.");
-    window.location.href = "/login2";
+        alert("La tua sessione è scaduta. Verrai reindirizzato al login.");
+        window.location.href = "/login2";
     }, 1800000);
 
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    ScrollReveal().reveal('.headline');
+    ScrollReveal().reveal('.tagline', { delay: 150 });
+    ScrollReveal().reveal('.punchline', { delay: 150 });
+    ScrollReveal({ reset: true });
 </script>
 </body>
 </html>

@@ -10,7 +10,6 @@ public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private Long idAdmin;
 
     @Column(name = "email")
@@ -20,16 +19,18 @@ public class Admin {
     private String password;
 
     @ManyToOne
-    private Denuncia id_denuncia;
+    private DenunciaPolizia id_denunciaPolizia;
 
+    @ManyToOne
+    private DenunciaEdile id_denunciaEdile;
     public Admin() {
     }
 
-    public Admin(Long idAdmin, String email, String password, Denuncia id_denuncia) {
+    public Admin(Long idAdmin, String email, String password, DenunciaPolizia id_denunciaPolizia) {
         this.idAdmin = idAdmin;
         this.email = email;
         this.password = password;
-        this.id_denuncia = id_denuncia;
+        this.id_denunciaPolizia = id_denunciaPolizia;
     }
 
     public Long getIdAdmin() {
@@ -56,12 +57,19 @@ public class Admin {
         this.password = password;
     }
 
-    public Denuncia getId_denuncia() {
-        return id_denuncia;
+    public DenunciaPolizia getId_denunciaPolizia() {
+        return id_denunciaPolizia;
     }
 
-    public void setId_denuncia(Denuncia id_denuncia) {
-        this.id_denuncia = id_denuncia;
+    public void setId_denunciaPolizia(DenunciaPolizia id_denunciaPolizia) {
+        this.id_denunciaPolizia = id_denunciaPolizia;
     }
 
+    public DenunciaEdile getId_denunciaEdile() {
+        return id_denunciaEdile;
+    }
+
+    public void setId_denunciaEdile(DenunciaEdile id_denunciaEdile) {
+        this.id_denunciaEdile = id_denunciaEdile;
+    }
 }
