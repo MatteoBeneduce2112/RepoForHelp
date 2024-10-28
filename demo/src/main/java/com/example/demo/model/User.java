@@ -25,6 +25,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Transient
+    private int denunciCount;
+
     public User() {
     }
 
@@ -83,5 +86,13 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getDenunciCount() {
+        return denunciCount;
+    }
+
+    public void setDenunciCount(int denunciCount) {
+        this.denunciCount = denunciCount;
     }
 }

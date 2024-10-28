@@ -12,25 +12,30 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAdmin;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "emailAdmin")
+    private String emailAdmin;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "passwordAdmin")
+    private String passwordAdmin;
 
     @ManyToOne
     private DenunciaPolizia id_denunciaPolizia;
 
     @ManyToOne
     private DenunciaEdile id_denunciaEdile;
+
+    @ManyToOne
+    private User id_user;
+
     public Admin() {
     }
 
-    public Admin(Long idAdmin, String email, String password, DenunciaPolizia id_denunciaPolizia) {
+    public Admin(Long idAdmin, String emailAdmin, String passwordAdmin, DenunciaPolizia id_denunciaPolizia, User id_user) {
         this.idAdmin = idAdmin;
-        this.email = email;
-        this.password = password;
+        this.emailAdmin = emailAdmin;
+        this.passwordAdmin = passwordAdmin;
         this.id_denunciaPolizia = id_denunciaPolizia;
+        this.id_user = id_user;
     }
 
     public Long getIdAdmin() {
@@ -41,20 +46,20 @@ public class Admin {
         this.idAdmin = idAdmin;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailAdmin() {
+        return emailAdmin;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailAdmin(String emailAdmin) {
+        this.emailAdmin = emailAdmin;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordAdmin() {
+        return passwordAdmin;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordAdmin(String passwordAdmin) {
+        this.passwordAdmin = passwordAdmin;
     }
 
     public DenunciaPolizia getId_denunciaPolizia() {
@@ -71,5 +76,13 @@ public class Admin {
 
     public void setId_denunciaEdile(DenunciaEdile id_denunciaEdile) {
         this.id_denunciaEdile = id_denunciaEdile;
+    }
+
+    public User getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(User id_user) {
+        this.id_user = id_user;
     }
 }

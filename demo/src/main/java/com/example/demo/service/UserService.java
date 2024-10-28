@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -89,5 +90,18 @@ public class UserService {
         // Salva la denuncia nel database
         denEdRepo.save(denuncia);
 
+    }
+
+    public List<User> getAllUsers() {
+        List<User> users = userRepo.findAll();
+        for (User user : users) {
+            int count = denPoRepo.countByUserId(user);
+            user.setDenunciCount(count);
+        }
+        return users;
+    }
+
+    public void deleteUser(Long userId) {
+        userRepo.deleteById(userId);
     }
 }

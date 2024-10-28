@@ -21,14 +21,18 @@ public class DenunciaPolizia {
 
     @Column(name = "positionPolizia")
     private String positionPolizia;
+
+    @ManyToOne
+    private User userId;
     public DenunciaPolizia() {
     }
 
-    public DenunciaPolizia(Long id_DenunciaPolizia, byte[] immaginePolizia, String descriptionPolizia, String positionPolizia) {
+    public DenunciaPolizia(Long id_DenunciaPolizia, byte[] immaginePolizia, String descriptionPolizia, String positionPolizia, User userId) {
         this.id_DenunciaPolizia = id_DenunciaPolizia;
         this.immaginePolizia = immaginePolizia;
         this.descriptionPolizia = descriptionPolizia;
         this.positionPolizia = positionPolizia;
+        this.userId = userId;
     }
 
     public Long getId_DenunciaPolizia() {
@@ -61,5 +65,13 @@ public class DenunciaPolizia {
 
     public void setPositionPolizia(String positionPolizia) {
         this.positionPolizia = positionPolizia;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 }

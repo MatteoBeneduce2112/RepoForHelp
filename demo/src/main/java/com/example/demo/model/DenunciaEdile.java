@@ -20,6 +20,10 @@ public class DenunciaEdile {
     @Column(name = "positionEdile")
     private String positionEdile;
 
+    @ManyToOne
+    private User user;
+
+
     public DenunciaEdile() {
     }
 

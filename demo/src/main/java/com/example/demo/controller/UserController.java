@@ -1,28 +1,63 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.DenunciaPolizia;
+import com.example.demo.model.Admin;
 import com.example.demo.model.User;
+import com.example.demo.repository.DenunciaEdileRepository;
+import com.example.demo.repository.DenunciaPoliziaRepository;
+import com.example.demo.service.AdminService;
 import com.example.demo.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
-public class MainController {
+public class UserController {
 
     @Autowired
     UserService userServ;
-
+    @Autowired
+    AdminService adminServ;
+    @Autowired
+    DenunciaEdileRepository denEdiRepo;
+    @Autowired
+    DenunciaPoliziaRepository denPoRepo;
     @GetMapping("/help")
     public String index() {
         return "index";
+    }
+
+    @GetMapping("/LoginAdmin")
+    public String loginAdmin(){
+        return "LoginAdmin";
+    }
+
+    @PostMapping("/LoginAdmin")
+    public String checkLogin(Admin admin){
+        return adminServ.checkLoginAdmin(admin);
+    }
+
+    @GetMapping("/dashboard")
+    public String getDashboard(Model model) {
+        List<User> users = userServ.getAllUsers();
+        model.addAttribute("users", users);
+        return "AdminHome";
+    }
+
+    @PostMapping("/deleteUser/{userId}")
+    public String deleteUser(@PathVariable Long userId) {
+        userServ.deleteUser(userId);
+        return "redirect:/dashboard";  // Reindirizza alla dashboard dopo l'eliminazione
+    }
+
+    @GetMapping("/AdminHome")
+    public String adminHome(){
+        return "AdminHome";
     }
 
     @GetMapping("/login2")
@@ -98,4 +133,6 @@ public class MainController {
         session.invalidate();
         return "redirect:/login2"; // Reindirizzamento pagina di login
     }
+
+
 }
