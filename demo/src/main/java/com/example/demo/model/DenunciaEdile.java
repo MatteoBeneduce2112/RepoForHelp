@@ -65,4 +65,12 @@ public class DenunciaEdile {
     public void setPositionEdile(String positionEdile) {
         this.positionEdile = positionEdile;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

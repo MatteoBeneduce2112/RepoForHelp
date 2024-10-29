@@ -5,6 +5,7 @@ import com.example.demo.model.User;
 import com.example.demo.repository.DenunciaEdileRepository;
 import com.example.demo.repository.DenunciaPoliziaRepository;
 import com.example.demo.service.AdminService;
+import com.example.demo.service.DenunciaPoliziaService;
 import com.example.demo.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-public class UserController {
+public class MainController {
 
     @Autowired
     UserService userServ;
@@ -27,6 +28,11 @@ public class UserController {
     DenunciaEdileRepository denEdiRepo;
     @Autowired
     DenunciaPoliziaRepository denPoRepo;
+
+    @Autowired
+    DenunciaPoliziaService denunciaPoliziaService;
+
+
     @GetMapping("/help")
     public String index() {
         return "index";
@@ -46,7 +52,7 @@ public class UserController {
     public String getDashboard(Model model) {
         List<User> users = userServ.getAllUsers();
         model.addAttribute("users", users);
-        return "AdminHome";
+        return "dashboard";
     }
 
     @PostMapping("/deleteUser/{userId}")
@@ -135,4 +141,15 @@ public class UserController {
     }
 
 
+
+    @GetMapping("/imageSearch")
+    public String imageSearch(){
+        return "imageSearch";
+    }
+
+    @PostMapping("/imageSearch")
+    public String imageSearch(User user){
+        return denunciaPoliziaService.imagePolice(user);
+    }
 }
+

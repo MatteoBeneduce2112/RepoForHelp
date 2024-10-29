@@ -24,6 +24,7 @@ public class DenunciaPolizia {
 
     @ManyToOne
     private User userId;
+
     public DenunciaPolizia() {
     }
 
