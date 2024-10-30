@@ -148,8 +148,8 @@ public class MainController {
     }
 
     @PostMapping("/imageSearch")
-    public String imageSearch(User user){
-        return denunciaPoliziaService.imagePolice(user);
+    public String imageSearch(User user, Long id ){
+        return denunciaPoliziaService.image(user, id );
     }
 }
 

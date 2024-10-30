@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DenunciaEdileRepository extends JpaRepository<DenunciaEdile, Long> {
     int countByUser(User user);
+    DenunciaEdile findImageByUser(User user);
 }
