@@ -13,12 +13,10 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+
 @Service
-public class DenunciaPoliziaService {
+public class DenunciaEdileService {
 
-
-    @Autowired
-    DenunciaPoliziaRepository denunciaPoliziaRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -26,6 +24,8 @@ public class DenunciaPoliziaService {
     @Autowired
     DenunciaEdileRepository denunciaEdileRepository;
 
+    @Autowired
+    DenunciaPoliziaRepository denunciaPoliziaRepository;
 
     public List<String> getImages(User user) {
         user = userRepository.getIdByNameAndEmail(user.getName(), user.getEmail());
@@ -35,6 +35,7 @@ public class DenunciaPoliziaService {
             try {
                 DenunciaPolizia denunciaPolizia = denunciaPoliziaRepository.findImageByUserId(user);
                 DenunciaEdile denunciaEdile = denunciaEdileRepository.findImageByUser(user);
+
                 if (denunciaPolizia != null && denunciaPolizia.getImmaginePolizia() != null) {
                     String imageP = Base64.getEncoder().encodeToString(denunciaPolizia.getImmaginePolizia());
                     imagesBase64.add(imageP);
@@ -53,9 +54,6 @@ public class DenunciaPoliziaService {
         } else {
             System.out.println("Utente non trovato");
         }
-        System.out.println(imagesBase64);
-
         return imagesBase64;
     }
-
 }

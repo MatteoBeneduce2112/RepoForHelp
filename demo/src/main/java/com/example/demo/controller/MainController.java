@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Admin;
+import com.example.demo.model.DenunciaPolizia;
 import com.example.demo.model.User;
 import com.example.demo.repository.DenunciaEdileRepository;
 import com.example.demo.repository.DenunciaPoliziaRepository;
@@ -9,12 +10,14 @@ import com.example.demo.service.DenunciaPoliziaService;
 import com.example.demo.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -39,12 +42,12 @@ public class MainController {
     }
 
     @GetMapping("/LoginAdmin")
-    public String loginAdmin(){
+    public String loginAdmin() {
         return "LoginAdmin";
     }
 
     @PostMapping("/LoginAdmin")
-    public String checkLogin(Admin admin){
+    public String checkLogin(Admin admin) {
         return adminServ.checkLoginAdmin(admin);
     }
 
@@ -62,8 +65,8 @@ public class MainController {
     }
 
     @GetMapping("/AdminHome")
-    public String adminHome(){
-        return "AdminHome";
+    public String adminHome() {
+        return "dashboard";
     }
 
     @GetMapping("/login2")
@@ -140,16 +143,18 @@ public class MainController {
         return "redirect:/login2"; // Reindirizzamento pagina di login
     }
 
-
-
     @GetMapping("/imageSearch")
-    public String imageSearch(){
+    public String imageSearch() {
         return "imageSearch";
     }
 
     @PostMapping("/imageSearch")
-    public String imageSearch(User user, Long id ){
-        return denunciaPoliziaService.image(user, id );
+    public String searchImages(User user, Model model) {
+        user.setName(user.getName());
+        user.setEmail(user.getEmail());
+        List<String> images = new ArrayList<>();
+        images = denunciaPoliziaService.getImages(user);
+        model.addAttribute("images", images);
+        return "imageResult";
     }
 }
-
