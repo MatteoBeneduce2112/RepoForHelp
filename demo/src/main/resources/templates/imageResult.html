@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Risultati della Ricerca Immagini</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-image: linear-gradient(to right top, #fff, #2d5dd8);
+        }
+        .carousel-inner img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            margin: 0 auto;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<a href="/imageSearch"><h1>Home</h1></a>
+<div id="carouselExample" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item" th:each="image, iterStat : ${images}" th:classappend="${iterStat.first ? 'active' : ''}">
+            <img th:src="@{'data:image/jpeg;base64,' + ${image}}" class="d-block w-100" alt="Immagine">
+        </div>
+    </div>
+
+    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Precedente</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Successivo</span>
+    </a>
+</div>
+
+</body>
+</html>

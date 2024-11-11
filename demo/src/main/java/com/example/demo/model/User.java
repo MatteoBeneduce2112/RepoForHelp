@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "user")
@@ -20,18 +19,25 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "password")
     private String password;
+
+    @Transient
+    private int denunciCount;
 
     public User() {
     }
 
-    public User(Long id, String name, String surname, String email, String password) {
+    public User(Long id, String name, String surname, String email, String password, String username) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
+        this.username = username;
     }
 
     public Long getId() {
@@ -72,5 +78,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getDenunciCount() {
+        return denunciCount;
+    }
+
+    public void setDenunciCount(int denunciCount) {
+        this.denunciCount = denunciCount;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
@@ -11,23 +12,30 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAdmin;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "emailAdmin")
+    private String emailAdmin;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "passwordAdmin")
+    private String passwordAdmin;
 
     @ManyToOne
-    private Denuncia id_denuncia;
+    private DenunciaPolizia id_denunciaPolizia;
+
+    @ManyToOne
+    private DenunciaEdile id_denunciaEdile;
+
+    @ManyToOne
+    private User id_user;
 
     public Admin() {
     }
 
-    public Admin(Long idAdmin, String email, String password, Denuncia id_denuncia) {
+    public Admin(Long idAdmin, String emailAdmin, String passwordAdmin, DenunciaPolizia id_denunciaPolizia, User id_user) {
         this.idAdmin = idAdmin;
-        this.email = email;
-        this.password = password;
-        this.id_denuncia = id_denuncia;
+        this.emailAdmin = emailAdmin;
+        this.passwordAdmin = passwordAdmin;
+        this.id_denunciaPolizia = id_denunciaPolizia;
+        this.id_user = id_user;
     }
 
     public Long getIdAdmin() {
@@ -38,28 +46,43 @@ public class Admin {
         this.idAdmin = idAdmin;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailAdmin() {
+        return emailAdmin;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailAdmin(String emailAdmin) {
+        this.emailAdmin = emailAdmin;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordAdmin() {
+        return passwordAdmin;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordAdmin(String passwordAdmin) {
+        this.passwordAdmin = passwordAdmin;
     }
 
-    public Denuncia getId_denuncia() {
-        return id_denuncia;
+    public DenunciaPolizia getId_denunciaPolizia() {
+        return id_denunciaPolizia;
     }
 
-    public void setId_denuncia(Denuncia id_denuncia) {
-        this.id_denuncia = id_denuncia;
+    public void setId_denunciaPolizia(DenunciaPolizia id_denunciaPolizia) {
+        this.id_denunciaPolizia = id_denunciaPolizia;
     }
 
+    public DenunciaEdile getId_denunciaEdile() {
+        return id_denunciaEdile;
+    }
+
+    public void setId_denunciaEdile(DenunciaEdile id_denunciaEdile) {
+        this.id_denunciaEdile = id_denunciaEdile;
+    }
+
+    public User getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(User id_user) {
+        this.id_user = id_user;
+    }
 }
